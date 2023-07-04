@@ -12,15 +12,6 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfiguration {
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsManager() {
-//        UserDetails satya = User.builder()
-//                .username("satya")
-//                .password("{noop}password")
-//                .roles("ADMIN")
-//                .build();
-//        return new InMemoryUserDetailsManager(satya);
-//    }
 
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
@@ -32,27 +23,30 @@ public class SecurityConfiguration {
         jdbcUserDetailsManager.
                 setAuthoritiesByUsernameQuery
                         ("select username,role from roles where username=?");
-
         return jdbcUserDetailsManager;
     }
 
+    private static final String[] AUTH_WHITELIST = {
+            "/api/v1/auth/**",
+            "/v3/api-docs/**",
+            "/v3/api-docs.yaml",
+            "/swagger-ui/**",
+            "/swagger-ui.html"
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-
         httpSecurity.authorizeHttpRequests(
                 authorizationManagerRequestMatcherRegistry -> {
                     authorizationManagerRequestMatcherRegistry
                             .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN")
-
                             .requestMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT, "/**").hasAnyRole("ADMIN")
-                            .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole("ADMIN");
+                            .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole("ADMIN")
+                            .requestMatchers(AUTH_WHITELIST).permitAll();
                 });
-
         httpSecurity.httpBasic();
         httpSecurity.csrf().disable();
         return httpSecurity.build();
     }
-
-
 }

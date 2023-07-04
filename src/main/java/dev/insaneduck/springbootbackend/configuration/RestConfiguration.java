@@ -27,8 +27,8 @@ public class RestConfiguration implements RepositoryRestConfigurer {
                 ExpenseItem.class,
                 FoodMenu.class,
                 Instructor.class,
-                Roles.class,
+                Role.class,
                 Student.class,
-                Users.class);
+                User.class);
     }
 }
