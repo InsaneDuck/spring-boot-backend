@@ -1,4 +1,4 @@
-package dev.insaneduck.springbootbackend.entities;
+package dev.insaneduck.springbootbackend.auth.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,20 +7,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Student {
+@Table(name = "users", schema = "data")
+public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private int id;
     @Basic
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
     @Basic
     @Column(name = "email")
     private String email;
+    @Basic
+    @Column(name = "password")
+    private String password;
+    @Basic
+    @Column(name = "enabled")
+    private byte enabled;
 }

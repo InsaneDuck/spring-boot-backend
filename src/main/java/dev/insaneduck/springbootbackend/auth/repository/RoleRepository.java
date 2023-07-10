@@ -1,6 +1,6 @@
-package dev.insaneduck.springbootbackend.repository;
+package dev.insaneduck.springbootbackend.auth.repository;
 
-import dev.insaneduck.springbootbackend.entities.Role;
+import dev.insaneduck.springbootbackend.auth.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository

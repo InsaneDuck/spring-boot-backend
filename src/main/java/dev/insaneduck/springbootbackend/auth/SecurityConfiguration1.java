@@ -1,7 +1,6 @@
-package dev.insaneduck.springbootbackend.configuration;
+package dev.insaneduck.springbootbackend.auth;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -10,9 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
-@Configuration
-public class SecurityConfiguration {
-
+public class SecurityConfiguration1 {
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
@@ -42,8 +39,8 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN")
                             .requestMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN")
                             .requestMatchers(HttpMethod.PUT, "/**").hasAnyRole("ADMIN")
-                            .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole("ADMIN")
-                            .requestMatchers(AUTH_WHITELIST).permitAll();
+                            .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole("ADMIN");
+                    //.requestMatchers(AUTH_WHITELIST).permitAll();
                 });
         httpSecurity.httpBasic();
         httpSecurity.csrf().disable();

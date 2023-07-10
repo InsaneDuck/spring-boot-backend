@@ -1,4 +1,4 @@
-package dev.insaneduck.springbootbackend.entities;
+package dev.insaneduck.springbootbackend.auth.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,15 +12,18 @@ import java.util.Objects;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Student {
+@Table(name = "roles", schema = "data")
+public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private int id;
     @Basic
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
     @Basic
-    @Column(name = "email")
-    private String email;
+    @Column(name = "role")
+    private String role;
+
+
 }

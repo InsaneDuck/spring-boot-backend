@@ -1,6 +1,8 @@
 package dev.insaneduck.springbootbackend.configuration;
 
 import dev.insaneduck.springbootbackend.entities.*;
+import dev.insaneduck.springbootbackend.auth.entities.Role;
+import dev.insaneduck.springbootbackend.auth.entities.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
