@@ -12,7 +12,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "food_menu", schema = "data", catalog = "")
+@Table(name = "food_menu", schema = "data")
 public class FoodMenu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

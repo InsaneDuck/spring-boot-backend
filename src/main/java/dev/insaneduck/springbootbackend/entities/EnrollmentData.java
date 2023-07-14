@@ -12,7 +12,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "enrollment_data", schema = "data", catalog = "")
+@Table(name = "enrollment_data", schema = "data")
 public class EnrollmentData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

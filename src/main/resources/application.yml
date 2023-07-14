@@ -7,3 +7,4 @@ spring:
 security:
   jwt:
     secret: "jwt-tokens-that-should-be-changed-production"
+
